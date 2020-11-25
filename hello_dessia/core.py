@@ -3,7 +3,6 @@ import volmdlr.primitives2d as p2d
 import volmdlr.primitives3d as p3d
 import plot_data.core as plot_data
 import math
-from itertools import product
 
 from dessia_common import DessiaObject
 from typing import List
