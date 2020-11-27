@@ -7,8 +7,8 @@ import math
 from dessia_common import DessiaObject
 from typing import List
 
-
 class Rivet(DessiaObject):
+    _standalone_in_db = True
 
     def __init__(self, rivet_diameter: float, rivet_length: float,
                  head_diameter: float, head_length: float, name: str = ''):
@@ -64,6 +64,8 @@ class Rivet(DessiaObject):
 
 
 class Generator(DessiaObject):
+    _standalone_in_db = True
+    
     _dessia_methods = ['generate']
     def __init__(self, rivets_definition: List[List[float]], name: str = ''):
         self.rivets_definition = rivets_definition
