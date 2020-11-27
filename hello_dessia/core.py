@@ -65,7 +65,7 @@ class Rivet(DessiaObject):
 
 class Generator(DessiaObject):
     _standalone_in_db = True
-    
+
     _dessia_methods = ['generate']
     def __init__(self, rivets_definition: List[List[float]], name: str = ''):
         self.rivets_definition = rivets_definition
