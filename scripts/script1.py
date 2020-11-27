@@ -1,14 +1,14 @@
 import hello_dessia as hd
 import plot_data.core as plot_data
 
-r1 = hd.Rivet(0.01, 0.05, 0.012, 0.005)
+r1 = hd.Rivet(0.005, 0.05, 0.012, 0.005)
 
 # show 3D with babylon
-# r1.babylonjs()
+r1.babylonjs()
 
 # show 2D with plot_data
 cs = r1.plot_data()
-plot_data.plot_canvas([cs.to_dict()], 'contour')
+plot_data.plot_canvas([cs.to_dict()], 'contour', debug_mode=True)
 
 # rivet_diameter, rivet_length, head_diameter, head_length
 rivets_definition = [[0.01, 0.05, 0.012, 0.005],
