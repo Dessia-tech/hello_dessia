@@ -8,7 +8,7 @@ r1.babylonjs()
 
 # show 2D with plot_data
 cs = r1.plot_data()
-plot_data.plot_canvas([cs.to_dict()], 'contour', debug_mode=True)
+plot_data.plot_canvas([cs.to_dict()], 'contour', canvas_id=1, debug_mode=True)
 
 # rivet_diameter, rivet_length, head_diameter, head_length
 rivets_definition = [[0.01, 0.05, 0.012, 0.005],
