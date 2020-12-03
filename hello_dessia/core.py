@@ -7,17 +7,36 @@ import math
 from dessia_common import DessiaObject
 from typing import List
 
+
 class Rivet(DessiaObject):
     _standalone_in_db = True
 
     def __init__(self, rivet_diameter: float, rivet_length: float,
-                 head_diameter: float, head_length: float, name: str = ''):
+                 head_diameter: float, head_length: float,
+                 price_factor: float = 1, rho:float=1, name: str = ''):
+        self.rho = rho
+        self.price_factor = price_factor
         self.head_diameter = head_diameter
         self.head_length = head_length
         self.rivet_diameter = rivet_diameter
         self.rivet_length = rivet_length
 
         DessiaObject.__init__(self, name=name)
+
+        self.price = self._price()
+        self.mass = self._mass()
+
+    def volume(self):
+        return (math.pi * self.head_diameter ** 2 / 4) * self.head_length + (
+                math.pi * self.rivet_diameter ** 2 / 4) * self.rivet_length
+
+    def _price(self):
+        real_volume = self.volume()
+        raw_volume = (math.pi * self.head_diameter ** 2 / 4) * (self.head_length + self.rivet_length)
+        return self.price_factor * raw_volume / real_volume
+
+    def _mass(self):
+        return self.rho*self.volume()
 
     def contour(self, full_contour=False):
 
@@ -60,21 +79,22 @@ class Rivet(DessiaObject):
         hatching = plot_data.HatchingSet(1)
         plot_data_state = plot_data.Settings(name='name', hatching=hatching, stroke_width=1)
         contour = self.contour(full_contour=full_contour)
-        return contour.plot_data(plot_data_states=[plot_data_state]).to_dict()
+        return contour.plot_data(plot_data_states=[plot_data_state])
 
 
 class Generator(DessiaObject):
     _standalone_in_db = True
 
     _dessia_methods = ['generate']
+
     def __init__(self, rivets_definition: List[List[float]], name: str = ''):
         self.rivets_definition = rivets_definition
 
         DessiaObject.__init__(self, name=name)
 
-    def generate(self)->List[Rivet]:
+    def generate(self) -> List[Rivet]:
         solutions = []
         for i, rivet_definition in enumerate(self.rivets_definition):
             rivet_diameter, rivet_length, head_diameter, head_length = rivet_definition
-            solutions.append(Rivet(rivet_diameter, rivet_length, head_diameter, head_length, 'rivet{}'.format(i+1)))
+            solutions.append(Rivet(rivet_diameter, rivet_length, head_diameter, head_length, name='rivet{}'.format(i + 1)))
         return solutions
