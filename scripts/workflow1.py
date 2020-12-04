@@ -18,9 +18,9 @@ rivets_definition = [[0.01, 0.05, 0.012, 0.005],
                      [0.012, 0.05, 0.013, 0.0055],
                      [0.0125, 0.05, 0.014, 0.0057],
                      [0.013, 0.05, 0.016, 0.006],
-                     [0.014, 0.05, 0.018, 0.007],
-                     [0.0145, 0.05, 0.0185, 0.0071],
-                     [0.015, 0.05, 0.0186, 0.0073],
+                     [0.014, 0.06, 0.018, 0.007],
+                     [0.0145, 0.07, 0.0185, 0.0071],
+                     [0.015, 0.075, 0.0186, 0.0073],
                      ]
 
 input_values = {workflow.index(block_generator.inputs[0]): rivets_definition
@@ -28,5 +28,5 @@ input_values = {workflow.index(block_generator.inputs[0]): rivets_definition
 
 workflow_run = workflow.run(input_values)
 
-c = Client(api_url='https://api.renault.dessia.tech')
+c = Client(api_url='https://api.demo.dessia.tech')
 r = c.create_object_from_python_object(workflow_run)

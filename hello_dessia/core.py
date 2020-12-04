@@ -13,7 +13,7 @@ class Rivet(DessiaObject):
 
     def __init__(self, rivet_diameter: float, rivet_length: float,
                  head_diameter: float, head_length: float,
-                 price_factor: float = 1, rho:float=1, name: str = ''):
+                 price_factor: float = 1, rho: float = 1, name: str = ''):
         self.rho = rho
         self.price_factor = price_factor
         self.head_diameter = head_diameter
@@ -36,7 +36,7 @@ class Rivet(DessiaObject):
         return self.price_factor * raw_volume / real_volume
 
     def _mass(self):
-        return self.rho*self.volume()
+        return self.rho * self.volume()
 
     def contour(self, full_contour=False):
 
@@ -72,7 +72,7 @@ class Rivet(DessiaObject):
         y = axis.random_unit_normal_vector()
         z = axis.cross(y)
         irc = p3d.RevolvedProfile(center, z, axis, contour, center,
-                                  axis, angle=2 * math.pi, name='Rivet')
+                                  axis, angle=2 * math.pi, name='rivet')
         return [irc]
 
     def plot_data(self, full_contour=True):
@@ -97,5 +97,6 @@ class Generator(DessiaObject):
         solutions = []
         for i, rivet_definition in enumerate(self.rivets_definition):
             rivet_diameter, rivet_length, head_diameter, head_length = rivet_definition
-            solutions.append(Rivet(rivet_diameter, rivet_length, head_diameter, head_length, name='rivet{}'.format(i + 1)))
+            solutions.append(
+                Rivet(rivet_diameter, rivet_length, head_diameter, head_length, name='rivet{}'.format(i + 1)))
         return solutions
