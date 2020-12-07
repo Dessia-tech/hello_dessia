@@ -80,7 +80,7 @@ class Rivet(DessiaObject):
         plot_data_state = plot_data.Settings(name='name', hatching=hatching, stroke_width=1)
         contour = self.contour(full_contour=full_contour)
         contour_data = contour.plot_data(plot_data_states=[plot_data_state])
-        return plot_data.ContourGroup(contours=[contour_data])
+        return plot_data.PrimitiveGroup(contours=[contour_data])
 
 
 class Generator(DessiaObject):

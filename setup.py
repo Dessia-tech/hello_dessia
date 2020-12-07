@@ -101,7 +101,7 @@ setup(
 	long_description=readme(),
 	author='hello',
 	author_email='hello@dessia.tech',
-	install_requires=['dessia_common'],
+	install_requires=['dessia_common', 'plot_data>=0.3.6'],
 	python_requires='>=3.7',
 	packages=find_packages(),
 )
