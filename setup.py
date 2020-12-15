@@ -102,6 +102,5 @@ setup(
 	author='hello',
 	author_email='hello@dessia.tech',
 	install_requires=['dessia_common>=0.4.0', 'volmdlr>=0.2.0'],
-	python_requires='3.8',
 	packages=find_packages(),
 )
