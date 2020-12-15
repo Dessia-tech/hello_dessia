@@ -7,8 +7,8 @@ r1 = hd.Rivet(0.005, 0.05, 0.012, 0.005)
 r1.babylonjs()
 
 # show 2D with plot_data
-cs = r1.plot_data()
-plot_data.plot_canvas(cs.to_dict(), canvas_id='canvas', debug_mode=True)
+plot_datas = r1.plot_data(False)
+plot_data.plot_canvas(plot_datas, canvas_id='canvas', debug_mode=True)
 
 # rivet_diameter, rivet_length, head_diameter, head_length
 rivets_definition = [[0.01, 0.05, 0.012, 0.005],
@@ -25,5 +25,6 @@ g1 = hd.Generator(rivets_definition)
 solutions = g1.generate()
 
 from dessia_api_client import Client
-c = Client(api_url='https://api.demo.dessia.tech')
+c = Client(api_url='https://api.safran-es.dessia.tech')
 r = c.create_object_from_python_object(r1)
+
