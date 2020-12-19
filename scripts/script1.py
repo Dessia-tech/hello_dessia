@@ -8,7 +8,7 @@ r1.babylonjs()
 
 # show 2D with plot_data
 plot_datas = r1.plot_data(True)
-plot_data.plot_canvas(plot_datas, canvas_id='canvas', debug_mode=True)
+plot_data.plot_canvas(plot_datas, canvas_id='canvas')
 
 # rivet_diameter, rivet_length, head_diameter, head_length
 rivets_definition = [[0.01, 0.05, 0.012, 0.005],
