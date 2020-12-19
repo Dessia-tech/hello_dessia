@@ -91,9 +91,6 @@ def get_version():
     return version
 
 
-
-
-
 setup(
 	version=get_version(),
 	name='hello_dessia',

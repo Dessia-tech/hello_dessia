@@ -77,9 +77,11 @@ class Rivet(DessiaObject):
 
     def plot_data(self, full_contour=True):
         hatching = plot_data.HatchingSet(0.1)
-        plot_data_state = plot_data.Settings(name='name', hatching=hatching, stroke_width=1)
+        edge_style = plot_data.EdgeStyle(line_width=1)
+        surface_style = plot_data.SurfaceStyle(hatching=hatching)
+
         contour = self.contour(full_contour=full_contour)
-        contour_data = contour.plot_data(plot_data_states=[plot_data_state])
+        contour_data = contour.plot_data(edge_style=edge_style, surface_style=surface_style)
         return plot_data.PrimitiveGroup(primitives=[contour_data])
 
 
