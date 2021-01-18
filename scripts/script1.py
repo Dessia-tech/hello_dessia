@@ -1,7 +1,7 @@
 import hello_dessia as hd
 import plot_data.core as plot_data
 
-r1 = hd.Rivet(0.005, 0.05, 0.012, 0.005)
+r1 = hd.Rivet(0.005, 0.05, 0.012, 0.005, rho=2, name='test')
 
 # show 3D with babylon
 r1.babylonjs()
