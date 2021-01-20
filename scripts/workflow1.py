@@ -5,7 +5,7 @@ from dessia_api_client import Client
 block_generator = wf.InstanciateModel(hd.Generator, name='Generator')
 methode_generate = wf.ModelMethod(hd.Generator, 'generate', name='generate')
 list_attribute = ['rivet_diameter', 'rivet_length', 'head_diameter', 'head_length', 'price', 'mass']
-display = wf.ParallelPlot(list_attribute, 1, name='Display')
+display = wf.MultiPlot(list_attribute, 1, name='Display')
 
 block_workflow = [block_generator, methode_generate, display]
 
@@ -29,4 +29,4 @@ input_values = {workflow.index(block_generator.inputs[0]): rivets_definition
 workflow_run = workflow.run(input_values)
 #
 c = Client(api_url='https://api.demo.dessia.tech')
-r = c.create_object_from_python_object(workflow_run)
+r = c.create_object_from_python_object(workflow)
