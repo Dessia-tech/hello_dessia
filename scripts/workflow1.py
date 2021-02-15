@@ -16,7 +16,8 @@ pipe_worflow = [
 ]
 
 workflow = wf.Workflow(block_workflow, pipe_worflow,
-                       methode_generate.outputs[0])
+                       methode_generate.outputs[0],
+                       name='Hello Dessia')
 workflow.plot_jointjs()
 
 rivets_definition = [[0.01, 0.05, 0.012, 0.005],
