@@ -81,8 +81,9 @@ class Rivet(DessiaObject):
         surface_style = plot_data.SurfaceStyle(hatching=hatching)
 
         contour = self.contour(full_contour=full_contour)
-        contour_data = contour.plot_data(edge_style=edge_style, surface_style=surface_style)
-        return plot_data.PrimitiveGroup(primitives=[contour_data])
+        contour_data = contour.plot_data(edge_style=edge_style,
+                                         surface_style=surface_style)
+        return [plot_data.PrimitiveGroup(primitives=[contour_data])]
 
 
 class Generator(DessiaObject):
