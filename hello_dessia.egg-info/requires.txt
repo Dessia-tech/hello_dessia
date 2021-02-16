@@ -1,3 +1,0 @@
-dessia_common
-plot_data>=0.4.10
-volmdlr>=0.2.4

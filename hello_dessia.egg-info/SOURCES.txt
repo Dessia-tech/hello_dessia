@@ -1,9 +1,0 @@
-README.md
-setup.py
-hello_dessia/__init__.py
-hello_dessia/core.py
-hello_dessia.egg-info/PKG-INFO
-hello_dessia.egg-info/SOURCES.txt
-hello_dessia.egg-info/dependency_links.txt
-hello_dessia.egg-info/requires.txt
-hello_dessia.egg-info/top_level.txt
