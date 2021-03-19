@@ -8,7 +8,7 @@ r1.babylonjs()
 
 # show 2D with plot_data
 plot_datas = r1.plot_data(True)
-plot_data.plot_canvas(plot_datas, canvas_id='canvas')
+plot_data.plot_canvas(plot_datas[0], canvas_id='canvas')
 
 # rivet_diameter, rivet_length, head_diameter, head_length
 rivets_definition = [[0.01, 0.05, 0.012, 0.005],
@@ -24,7 +24,7 @@ rivets_definition = [[0.01, 0.05, 0.012, 0.005],
 g1 = hd.Generator(rivets_definition)
 solutions = g1.generate()
 
-from dessia_api_client import Client
-c = Client(api_url='https://api.demo.dessia.tech')
-r = c.create_object_from_python_object(r1)
+# from dessia_api_client import Client
+# c = Client(api_url='https://api.demo.dessia.tech')
+# r = c.create_object_from_python_object(r1)
 
