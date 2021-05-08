@@ -31,5 +31,5 @@ rivets_definition = [[0.01, 0.05, 0.012, 0.005],
 input_values = {workflow.index(block_generator.inputs[0]): rivets_definition}
 workflow_run = workflow.run(input_values)
 
-c = Client(api_url='https://api.platform-dev.dessia.tech')
-r = c.create_object_from_python_object(workflow_run)
+# c = Client(api_url='https://api.platform-dev.dessia.tech')
+# r = c.create_object_from_python_object(workflow_run)

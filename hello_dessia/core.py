@@ -40,31 +40,37 @@ class Rivet(DessiaObject):
 
     def contour(self, full_contour=False):
 
-        p0 = vm.Point2D(0, 0)
-        vectors = [vm.Vector2D(self.rivet_diameter / 2, 0),
-                   vm.Vector2D(self.head_diameter / 2 - self.rivet_diameter / 2, 0),
-                   vm.Vector2D(0, self.head_length),
-                   vm.Vector2D(-self.head_diameter, 0),
-                   vm.Vector2D(0, -self.head_length),
-                   vm.Vector2D(self.head_diameter / 2 - self.rivet_diameter / 2, 0),
-                   vm.Vector2D(0, -self.rivet_length),
-                   vm.Vector2D(self.rivet_diameter, 0),
-                   vm.Vector2D(0, self.rivet_length),
-                   ]
-        points = []
-        p_init = p0
+        if full_contour:
+            p0 = vm.Point2D(0, 0)
+            vectors = [vm.Vector2D(self.rivet_diameter / 2, 0),
+                       vm.Vector2D(self.head_diameter / 2 - self.rivet_diameter / 2, 0),
+                       vm.Vector2D(0, self.head_length),
+                       vm.Vector2D(-self.head_diameter, 0),
+                       vm.Vector2D(0, -self.head_length),
+                       vm.Vector2D(self.head_diameter / 2 - self.rivet_diameter / 2, 0),
+                       vm.Vector2D(0, -self.rivet_length),
+                       vm.Vector2D(self.rivet_diameter, 0),
+                       vm.Vector2D(0, self.rivet_length),
+                       ]
+            points = []
+            p_init = p0
+        else:
+            p0 = vm.Point2D(0, 0)
+            vectors = [vm.Vector2D(self.rivet_diameter / 2, 0),
+                       vm.Vector2D(self.head_diameter / 2 - self.rivet_diameter / 2, 0),
+                       vm.Vector2D(0, self.head_length),
+                       vm.Vector2D(-self.head_diameter/2, 0),
+                       vm.Vector2D(0, -self.head_length - self.rivet_length),
+                       vm.Vector2D(self.rivet_diameter / 2, 0),
+                       ]
+            points = []
+            p_init = p0
         for v in vectors:
             p1 = p_init.translation(v, copy=True)
             points.append(p1)
             p_init = p1
-
         c = p2d.ClosedRoundedLineSegments2D(points, {})
-        if full_contour:
-            return vm.wires.Contour2D(c.primitives)
-        else:
-            line = vm.edges.Line2D(p0, p0.translation(vm.Vector2D(0, -self.rivet_length), copy=True))
-            contour = vm.wires.Contour2D(c.primitives)
-            return contour.cut_by_line(line)[0]
+        return vm.wires.Contour2D(c.primitives)
 
     def volmdlr_primitives(self, center=vm.O3D, axis=vm.Z3D):
         contour = self.contour(full_contour=False)
@@ -72,7 +78,7 @@ class Rivet(DessiaObject):
         y = axis.random_unit_normal_vector()
         z = axis.cross(y)
         irc = p3d.RevolvedProfile(center, z, axis, contour, center,
-                                  axis, angle=2 * math.pi, name='rivet')
+                                  axis, angle=2*math.pi, name='rivet')
         return [irc]
 
     def plot_data(self, full_contour=True):
