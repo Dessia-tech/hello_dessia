@@ -98,6 +98,6 @@ setup(
 	long_description=readme(),
 	author='hello',
 	author_email='hello@dessia.tech',
-	install_requires=['dessia_common', 'plot_data>=0.5.8', 'volmdlr>=0.2.6'],
+	install_requires=['dessia_common', 'plot_data>=0.5.11', 'volmdlr>=0.2.6'],
 	packages=find_packages(),
 )
