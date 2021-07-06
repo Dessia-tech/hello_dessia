@@ -1,9 +1,10 @@
 import hello_dessia as hd
 import dessia_common.workflow as wf
-from dessia_api_client import Client
+from dessia_common.typings import MethodType
 
 block_generator = wf.InstantiateModel(hd.Generator, name='Generator')
-methode_generate = wf.ModelMethod(hd.Generator, 'generate', name='generate')
+method_type = MethodType(class_=hd.Generator, name='generate')
+methode_generate = wf.ModelMethod(method_type=method_type, name='generate')
 list_attribute = ['rivet_diameter', 'rivet_length', 'head_diameter',
                   'head_length', 'price', 'mass']
 display = wf.MultiPlot(list_attribute, 1, name='Display')
