@@ -11,9 +11,10 @@ def readme():
     with open('README.md') as f:
         return f.read()
 
+
 def version_from_git_describe(version):
-    if version[0]=='v':
-            version = version[1:]
+    if version[0] == 'v':
+        version = version[1:]
 
     # PEP 440 compatibility
     number_commits_ahead = 0
@@ -59,12 +60,14 @@ def version_from_git_describe(version):
 
         return '.'.join(split_versions)
 
+
 # Just testing if get_version works well
 assert version_from_git_describe('v0.1.7.post2') == '0.1.7.post2'
 assert version_from_git_describe('v0.0.1-25-gaf0bf53') == '0.0.2.dev25'
 assert version_from_git_describe('v0.1-15-zsdgaz') == '0.1.1.dev15'
 assert version_from_git_describe('v1') == '1'
 assert version_from_git_describe('v1-3-aqsfjbo') == '1.0.1.dev3'
+
 
 def get_version():
     # Return the version if it has been injected into the file by git-archive
@@ -91,13 +94,8 @@ def get_version():
     return version
 
 
-setup(
-	version=get_version(),
-	name='hello_dessia',
-	description='',
-	long_description=readme(),
-	author='hello',
-	author_email='hello@dessia.tech',
-	install_requires=['dessia_common', 'plot_data>=0.5.11', 'volmdlr>=0.2.6'],
-	packages=find_packages(),
-)
+setup(version=get_version(), name='hello_dessia', description='',
+      long_description=readme(), author='hello',
+      author_email='hello@dessia.tech',
+      install_requires=['dessia_common', 'plot_data<0.6.0', 'volmdlr>=0.2.6'],
+      packages=find_packages())
