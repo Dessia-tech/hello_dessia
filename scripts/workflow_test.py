@@ -1,4 +1,4 @@
-import hello_des, mais dans tous les cas, ils étaient au courant qu'on ne prévoyait rien en particuliersia as hd
+import hello_dessia as hd
 import dessia_common.workflow as wf
 from dessia_api_client import Client
 
