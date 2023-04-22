@@ -1,25 +1,26 @@
-import hello_dessia as hd
-import dessia_common.workflow as wf
-from dessia_common.typings import MethodType
+from dessia_common.workflow.core import Workflow, Pipe
+from dessia_common.workflow.blocks import InstantiateModel, ModelMethod, MultiPlot, MethodType
 
-block_generator = wf.InstantiateModel(hd.Generator, name='Generator')
+import hello_dessia as hd
+
+block_generator = InstantiateModel(hd.Generator, name='Generator')
 method_type = MethodType(class_=hd.Generator, name='generate')
-methode_generate = wf.ModelMethod(method_type=method_type, name='generate')
+methode_generate = ModelMethod(method_type=method_type, name='generate')
 list_attribute = ['rivet_diameter', 'rivet_length', 'head_diameter',
                   'head_length', 'price', 'mass']
-display = wf.MultiPlot(list_attribute, 1, name='Display')
+display = MultiPlot(list_attribute, 1, name='Display')
 
 block_workflow = [block_generator, methode_generate, display]
 
 pipe_worflow = [
-    wf.Pipe(block_generator.outputs[0], methode_generate.inputs[0]),
-    wf.Pipe(methode_generate.outputs[0], display.inputs[0])
+    Pipe(block_generator.outputs[0], methode_generate.inputs[0]),
+    Pipe(methode_generate.outputs[0], display.inputs[0])
 ]
 
-workflow = wf.Workflow(block_workflow, pipe_worflow,
+workflow = Workflow(block_workflow, pipe_worflow,
                        methode_generate.outputs[0],
                        name='Hello Dessia')
-workflow.plot_jointjs()
+workflow.plot()
 
 rivets_definition = [[0.01, 0.05, 0.012, 0.005],
                      [0.012, 0.05, 0.013, 0.0055],

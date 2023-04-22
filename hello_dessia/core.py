@@ -4,11 +4,10 @@ import volmdlr.primitives3d as p3d
 import plot_data.core as plot_data
 import math
 
-from dessia_common import DessiaObject
+from dessia_common.core import DessiaObject, PhysicalObject
 from typing import List
 
-
-class Rivet(DessiaObject):
+class Rivet(PhysicalObject):
     _standalone_in_db = True
 
     def __init__(self, rivet_diameter: float, rivet_length: float,
@@ -66,11 +65,11 @@ class Rivet(DessiaObject):
             points = []
             p_init = p0
         for v in vectors:
-            p1 = p_init.translation(v, copy=True)
+            p1 = p_init.translation(v)
             points.append(p1)
             p_init = p1
-        c = p2d.ClosedRoundedLineSegments2D(points, {})
-        return vm.wires.Contour2D(c.primitives)
+
+        return vm.wires.ClosedPolygon2D(points)
 
     def volmdlr_primitives(self, center=vm.O3D, axis=vm.Z3D):
         contour = self.contour(full_contour=False)

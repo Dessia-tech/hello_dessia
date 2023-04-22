@@ -7,7 +7,7 @@ r1 = hd.Rivet(0.005, 0.05, 0.012, 0.005, rho=2, name='new')
 r1.babylonjs()
 
 # show 2D with plot_data
-plot_datas = r1.plot_data(True)
+plot_datas = r1.plot_data(full_contour=True)
 plot_data.plot_canvas(plot_datas[0], canvas_id='canvas')
 
 # rivet_diameter, rivet_length, head_diameter, head_length
