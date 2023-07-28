@@ -4,7 +4,7 @@ import volmdlr.primitives3d as p3d
 import plot_data.core as plot_data
 import math
 
-from dessia_common import DessiaObject
+from dessia_common.core import DessiaObject
 from typing import List
 
 
